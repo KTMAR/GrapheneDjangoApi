@@ -1,29 +1,9 @@
 from django.contrib import admin
 from .models import *
-from django.utils.safestring import mark_safe
-
-
-# class ArtistInline(admin.TabularInline):
-#     model = Artist.frontman.through
-#
-#
-# class FrontmanAdmin(admin.ModelAdmin):
-#     model = Frontman
-#     readonly_fields = ('slug',)
-#     inlines = [
-#         ArtistInline,
-#     ]
 
 
 class AlbumAdmin(admin.ModelAdmin):
     readonly_fields = ('slug',)
-
-    # class ArtistAdmin(admin.ModelAdmin):
-    #     readonly_fields = ('slug',)
-    #     inlines = [
-    #         ArtistInline,
-    #     ]
-    #     exclude = ('frontman',)
 
 
 class GenreAdmin(admin.ModelAdmin):

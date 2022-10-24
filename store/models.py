@@ -69,7 +69,7 @@ class Artist(models.Model):
     image = models.ImageField(upload_to=upload_function, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.name} | {self.genre.name}'
+        return f'{self.name} | {self.genre.name}| {self.image} | {self.id}'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

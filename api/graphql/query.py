@@ -56,6 +56,7 @@ class Query(graphene.ObjectType):
     all_genre = graphene.List(GenreType)
     genre_by_name = graphene.Field(GenreType, name=graphene.String(required=True))
 
+    # Genre-query start ////////
     @staticmethod
     def resolve_all_genre(root, info):
         return Genre.objects.all()
@@ -66,3 +67,5 @@ class Query(graphene.ObjectType):
             return Genre.objects.get(name=name)
         except Genre.DoesNotExist:
             return None
+
+    # Genre-query end ////////

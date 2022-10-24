@@ -1,5 +1,11 @@
-from graphene_django import DjangoObjectType, DjangoListField
-from store.models import Artist, Album, Genre, Frontman
+from graphene_django import DjangoObjectType
+from store.models import Artist, Album, Genre, Frontman, MediaType
+
+
+class MediaTypeType(DjangoObjectType):
+    class Meta:
+        model = MediaType
+        fields = ("id", "name")
 
 
 class GenreType(DjangoObjectType):
@@ -17,10 +23,13 @@ class FrontmanType(DjangoObjectType):
 class ArtistType(DjangoObjectType):
     class Meta:
         model = Artist
+        fields = ("id", "name", "slug", "genre", "frontman")
 
 
 class AlbumType(DjangoObjectType):
     class Meta:
         model = Album
-        fields = ("id", "slug", "artist", "name", "media_type", "release_date", "description", "stock", "price",
-                  "offer_of_the_week", "track")
+        fields = (
+            "id", "slug", "artist", "name", "media_type", "description", "stock", "price", "offer_of_the_week",
+            "release_date"
+        )
