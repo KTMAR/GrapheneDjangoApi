@@ -18,8 +18,12 @@ class FrontmanAdmin(admin.ModelAdmin):
     readonly_fields = ('slug',)
 
 
+class MediaTypeAdmin(admin.ModelAdmin):
+    readonly_fields = ('pk',)
+
+
 admin.site.register(Genre, GenreAdmin)
 admin.site.register(Album, AlbumAdmin)
 admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Frontman, FrontmanAdmin)
-admin.site.register(MediaType)
+admin.site.register(MediaType, MediaTypeAdmin)

@@ -7,6 +7,14 @@ class TrackUploadHelper:
             'fields': 'slug',
             'upload_postfix': 'albums_images'
         },
+        'Artist': {
+            'fields': 'slug',
+            'upload_postfix': 'artist_images'
+        },
+        'Frontman': {
+            'fields': 'slug',
+            'upload_postfix': 'frontman_images'
+        },
     }
 
     def __init__(self, field_name_to_combine, instance, filename, upload_postfix):
@@ -27,7 +35,7 @@ class TrackUploadHelper:
     def path(self):
         field_to_combine = getattr(self.instance, self.field_name_to_combine)
         filename = '.'.join([field_to_combine, self.extension])
-        return f'demo-tracks/{self.instance.__class__.__name__.lower()}{self.upload_postfix}/{field_to_combine}/{filename}'
+        return f'all-images/{self.instance.__class__.__name__.lower()}{self.upload_postfix}/{field_to_combine}/{filename}'
 
 
 def upload_function(instance, filename):

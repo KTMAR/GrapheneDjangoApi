@@ -2,24 +2,29 @@ import graphene
 
 
 class MediaTypeInput(graphene.InputObjectType):
+    id = graphene.ID()
     name = graphene.String(required=True)
 
 
 class FrontmanInput(graphene.InputObjectType):
+    id = graphene.ID()
     name = graphene.String(required=True)
 
 
 class GenreInput(graphene.InputObjectType):
+    id = graphene.ID()
     name = graphene.String(required=True)
 
 
 class ArtistInput(graphene.InputObjectType):
+    id = graphene.ID()
     name = graphene.String(required=True)
     frontman = FrontmanInput(required=True)
     genre = GenreInput(required=True)
 
 
 class AlbumInput(graphene.InputObjectType):
+    id = graphene.ID()
     artist = ArtistInput(required=True)
     name = graphene.String(required=True)
     media_type = MediaTypeInput(required=True)

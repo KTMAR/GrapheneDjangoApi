@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from utils import upload_function
 
@@ -11,7 +10,7 @@ class MediaType(models.Model):
     name = models.CharField(max_length=100, verbose_name='Тип носителя')
 
     def __str__(self):
-        return self.name
+        return f"{self.pk} | {self.name}"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -30,7 +29,7 @@ class Frontman(models.Model):
     image = models.ImageField(upload_to=upload_function, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.pk} | {self.name}"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -48,7 +47,7 @@ class Genre(models.Model):
     slug = models.SlugField(editable=False)
 
     def __str__(self):
-        return self.name
+        return f"{self.pk} | {self.name}"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -69,7 +68,7 @@ class Artist(models.Model):
     image = models.ImageField(upload_to=upload_function, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.name} | {self.genre.name}| {self.image} | {self.id}'
+        return f'{self.pk} | {self.name} | {self.genre.name}| {self.image}'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -99,7 +98,7 @@ class Album(models.Model):
     track = models.FileField(null=True, blank=True, verbose_name='Демо-трек', upload_to=upload_function)
 
     def __str__(self):
-        return f'{self.id} | {self.artist.name} | {self.name}'
+        return f'{self.pk} | {self.artist.name} | {self.name} | {self.release_date}'
 
     def get_absolute_url(self):
         return reverse('album_detail', kwargs={'artist_slug': self.artist.slug, 'album_slug': self.slug})

@@ -1,6 +1,6 @@
 import graphene
 from .mutation_input import FrontmanInput, GenreInput, ArtistInput, AlbumInput, MediaTypeInput
-from .query_types import FrontmanType, ArtistType, GenreType, AlbumType, MediaTypeType
+from ..query_types import FrontmanType, ArtistType, GenreType, AlbumType, MediaTypeType
 from store.models import Genre, Frontman, Artist, MediaType, Album
 
 
@@ -95,11 +95,3 @@ class CreateAlbum(graphene.Mutation):
         )
 
         return CreateAlbum(album=album)
-
-
-class Mutation(graphene.ObjectType):
-    create_media_type = CreateMediaType.Field()
-    create_frontman = CreateFrontman.Field()
-    create_genre = CreateGenre.Field()
-    create_artist = CreateArtist.Field()
-    create_album = CreateAlbum.Field()

@@ -17,7 +17,7 @@ class GenreType(DjangoObjectType):
 class FrontmanType(DjangoObjectType):
     class Meta:
         model = Frontman
-        fields = ("id", "name", "slug")
+        fields = ("id", "name", "slug", "image")
 
 
 class ArtistType(DjangoObjectType):
