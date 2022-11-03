@@ -1,11 +1,26 @@
 import graphene
 from .query_types import *
+from graphene_django.debug import DjangoDebug
 
 
 class Query(graphene.ObjectType):
+    all_media_type = graphene.List(MediaTypeType)
+    media_type_by_name = graphene.Field(MediaTypeType, name=graphene.String(required=True))
+
+    @staticmethod
+    def resolve_all_media_type(root, info):
+        return MediaType.objects.all()
+
+    def resolve_media_type_by_name(root, info, name):
+        try:
+            return MediaType.objects.get(name=name)
+        except MediaType.DoesNotExist:
+            return None
+
     # Album-query start /////////////
     all_albums = graphene.List(AlbumType)
     album_by_name = graphene.Field(AlbumType, name=graphene.String(required=True))
+    debug = graphene.Field(DjangoDebug, name='_debug')
 
     @staticmethod
     def resolve_all_albums(root, info):

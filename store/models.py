@@ -23,7 +23,6 @@ class MediaType(models.Model):
 
 class Frontman(models.Model):
     """Артист(как отдельная личность)"""
-
     name = models.CharField(max_length=255, verbose_name='Фронтмен')
     slug = models.SlugField(editable=False)
     image = models.ImageField(upload_to=upload_function, null=True, blank=True)
@@ -113,3 +112,4 @@ class Album(models.Model):
     class Meta:
         verbose_name = "Альбом"
         verbose_name_plural = 'Альбомы'
+

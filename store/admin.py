@@ -15,7 +15,7 @@ class ArtistAdmin(admin.ModelAdmin):
 
 
 class FrontmanAdmin(admin.ModelAdmin):
-    readonly_fields = ('slug',)
+    readonly_fields = ('slug', 'id')
 
 
 class MediaTypeAdmin(admin.ModelAdmin):

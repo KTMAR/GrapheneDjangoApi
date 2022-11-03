@@ -23,7 +23,7 @@ class FrontmanType(DjangoObjectType):
 class ArtistType(DjangoObjectType):
     class Meta:
         model = Artist
-        fields = ("id", "name", "slug", "genre", "frontman")
+        fields = ("id", "name", "slug", "genre", "frontman", "image")
 
 
 class AlbumType(DjangoObjectType):
@@ -31,5 +31,5 @@ class AlbumType(DjangoObjectType):
         model = Album
         fields = (
             "id", "slug", "artist", "name", "media_type", "description", "stock", "price", "offer_of_the_week",
-            "release_date"
+            "release_date", "image", "track"
         )
