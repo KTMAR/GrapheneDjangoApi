@@ -4,15 +4,23 @@ from .create_mutations import \
     CreateAlbum, \
     CreateFrontman, \
     CreateGenre, \
-    CreateArtist
+    CreateArtist,\
+    CreateUser
 from .update_mutations import \
     UpdateMediaType, \
     UpdateFrontman, UpdateGenre, UpdateArtist, UpdateAlbum
 from .delete_mutations import \
     DeleteMediaType, DeleteFrontman, DeleteGenre, DeleteArtist
+import graphql_jwt
 
 
 class Mutation(graphene.ObjectType):
+    # User
+    create_user = CreateUser.Field()
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt.Verify.Field()
+    refresh_token = graphql_jwt.Refresh.Field()
+
     # MediaType
     create_media_type = CreateMediaType.Field()
     update_media_type = UpdateMediaType.Field()

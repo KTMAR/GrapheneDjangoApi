@@ -4,6 +4,25 @@ from graphene_django.debug import DjangoDebug
 
 
 class Query(graphene.ObjectType):
+    # User-query start //////////////
+    me = graphene.Field(UserType)
+    users = graphene.List(UserType)
+
+    @staticmethod
+    def resolve_users(self, info):
+        return get_user_model().objects.all()
+
+    @staticmethod
+    def resolve_me(self, info):
+        user = info.context.user
+        if user.is_anonymous:
+            raise Exception('Not logged in!')
+
+        return user
+
+    # User-query end //////////////
+
+    # MediaType-query start //////////////
     all_media_type = graphene.List(MediaTypeType)
     media_type_by_name = graphene.Field(MediaTypeType, name=graphene.String(required=True))
 
@@ -11,11 +30,14 @@ class Query(graphene.ObjectType):
     def resolve_all_media_type(root, info):
         return MediaType.objects.all()
 
+    @staticmethod
     def resolve_media_type_by_name(root, info, name):
         try:
             return MediaType.objects.get(name=name)
         except MediaType.DoesNotExist:
             return None
+
+    # MediaType-query end //////////////
 
     # Album-query start /////////////
     all_albums = graphene.List(AlbumType)

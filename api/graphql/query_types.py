@@ -1,5 +1,11 @@
-from graphene_django import DjangoObjectType
 from store.models import Artist, Album, Genre, Frontman, MediaType
+from django.contrib.auth import get_user_model
+from graphene_django import DjangoObjectType
+
+
+class UserType(DjangoObjectType):
+    class Meta:
+        model = get_user_model()
 
 
 class MediaTypeType(DjangoObjectType):
